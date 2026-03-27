@@ -5,10 +5,7 @@
 __pycache__/
 *.pyc
 
-# 인덱싱 데이터 (실행 시 자동 생성)
-data/chroma_db/
-data/bm25_index.pkl
-data/processed_hashes.json
+# 사용자 키워드 (개인 설정)
 data/user_keywords.json
 
 # OS 파일
