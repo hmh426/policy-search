@@ -421,7 +421,7 @@ def render_search_tab():
     st.subheader("문서 검색")
 
     # ── 검색 입력 ────────────────────────────────────────────────
-    col1, col2, col3 = st.columns([5, 1, 1.5])
+    col1, col2, col3 = st.columns([4, 1, 2])
     query = col1.text_input(
         "검색어",
         placeholder="예: 암 진단금 지급 조건, 면책 기간, 보험료 납입 면제...",
