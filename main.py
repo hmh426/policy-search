@@ -537,8 +537,17 @@ def render_search_tab():
     for i, r in enumerate(results, 1):
         with st.container():
             pct = r.score / max_score * 100
+            st.markdown(
+                f'<div style="margin-bottom:-12px">'
+                f'<span class="source-badge">📄 {r.filename}</span> '
+                f'<span style="color:#666;font-size:0.85em">{r.page}p</span>'
+                f'<span style="float:right;background:#e8f5e9;color:#2e7d32;padding:2px 6px;'
+                f'border-radius:10px;font-size:0.8em;font-weight:700;white-space:nowrap">'
+                f'{pct:.0f}%</span></div>',
+                unsafe_allow_html=True,
+            )
             text = r.text or "(텍스트 없음)"
-            label = f"#{i} [{pct:.0f}%] {text[:60]}..."
+            label = f"#{i} {text[:60]}..."
             with st.expander(label, expanded=expand_all):
                 if highlight_on and st.session_state.search_query:
                     display_text = _highlight_text(text, st.session_state.search_query)
