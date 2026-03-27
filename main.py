@@ -33,11 +33,8 @@ st.markdown("""
     padding-left: 2rem !important;
     padding-right: 2rem !important;
 }
-/* 모바일에서 컬럼 세로 쌓임 방지 */
+/* 모바일 여백 축소 */
 @media (max-width: 768px) {
-    [data-testid="stHorizontalBlock"] {
-        flex-wrap: nowrap !important;
-    }
     .stMainBlockContainer {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
@@ -529,11 +526,9 @@ def render_search_tab():
             st.info("검색 결과가 없습니다.")
         return
 
-    res_col1, res_col2 = st.columns([3, 2])
-    res_col1.markdown(f"**{len(results)}개 결과** — '{st.session_state.search_query}'")
-    tog1, tog2 = res_col2.columns(2)
-    highlight_on = tog1.toggle("강조", value=True)
-    expand_all = tog2.toggle("펼치기", value=True)
+    st.markdown(f"**{len(results)}개 결과** — '{st.session_state.search_query}'")
+    highlight_on = st.toggle("검색어 강조", value=True)
+    expand_all = st.toggle("모두 펼치기", value=True)
 
     # 1등 점수 기준 백분율로 변환 (1등 = 100%)
     max_score = results[0].score if results else 1.0
@@ -541,14 +536,9 @@ def render_search_tab():
     for i, r in enumerate(results, 1):
         with st.container():
             pct = r.score / max_score * 100
-            st.markdown(
-                f'<span class="source-badge">📄 {r.filename}</span> '
-                f'<span style="color:#666"> {r.page}페이지</span> '
-                f'<span class="score-badge" style="float:right">{pct:.0f}%</span>',
-                unsafe_allow_html=True,
-            )
             text = r.text or "(텍스트 없음)"
-            with st.expander(f"#{i} {text[:60]}...", expanded=expand_all):
+            label = f"#{i} [{pct:.0f}%] {text[:60]}..."
+            with st.expander(label, expanded=expand_all):
                 if highlight_on and st.session_state.search_query:
                     display_text = _highlight_text(text, st.session_state.search_query)
                     st.markdown(display_text, unsafe_allow_html=True)
