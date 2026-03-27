@@ -519,10 +519,11 @@ def render_search_tab():
             st.info("검색 결과가 없습니다.")
         return
 
-    res_col1, res_col2, res_col3 = st.columns([5, 1, 1])
+    res_col1, res_col2 = st.columns([3, 2])
     res_col1.markdown(f"**{len(results)}개 결과** — '{st.session_state.search_query}'")
-    highlight_on = res_col2.toggle("검색어 강조", value=True)
-    expand_all = res_col3.toggle("모두 펼치기", value=True)
+    tog1, tog2 = res_col2.columns(2)
+    highlight_on = tog1.toggle("강조", value=True)
+    expand_all = tog2.toggle("펼치기", value=True)
 
     # 1등 점수 기준 백분율로 변환 (1등 = 100%)
     max_score = results[0].score if results else 1.0
