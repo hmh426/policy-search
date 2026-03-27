@@ -877,9 +877,23 @@ PDF를 추가한 후 **📁 문서 관리** 탭에서:
 
 
 # ── 메인 ─────────────────────────────────────────────────────────────
+def _auto_ingest_if_needed():
+    """인덱싱 데이터가 없으면 자동으로 인덱싱 실행"""
+    from config import BM25_INDEX_PATH, CHROMA_DIR
+    chroma_db_file = CHROMA_DIR / "chroma.sqlite3"
+    if not BM25_INDEX_PATH.exists() or not chroma_db_file.exists():
+        pdfs = sorted(PDF_DIR.glob("*.pdf"))
+        if pdfs:
+            with st.spinner("첫 실행 — 문서 인덱싱 중... (1~2분 소요)"):
+                from ingest import ingest_pdfs
+                ingest_pdfs(log=lambda msg: None)
+            st.cache_data.clear()
+
+
 def main():
     _init_state()
     render_sidebar()
+    _auto_ingest_if_needed()
 
     # ── Q&A 탭은 Claude Console API (유료, 사용량 과금) 가입 필요 ──
     # ── 가입 후 .env 파일에 ANTHROPIC_API_KEY 설정하면 사용 가능 ──
