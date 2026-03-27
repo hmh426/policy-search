@@ -1,0 +1,25 @@
+# PDF 파싱
+pymupdf>=1.24.0
+
+# 한국어 처리
+kiwipiepy>=0.18.0
+
+# 임베딩 (한국어 특화 SBERT)
+sentence-transformers>=3.0.0
+
+# 벡터 DB (로컬 퍼시스턴트)
+chromadb>=0.5.0
+
+# BM25 키워드 검색
+rank-bm25>=0.2.2
+
+# Claude API
+anthropic>=0.40.0
+
+# 웹 UI
+streamlit>=1.40.0
+
+# 유틸
+python-dotenv>=1.0.0
+numpy>=1.26.0
+tqdm>=4.66.0

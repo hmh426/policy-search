@@ -1,0 +1,24 @@
+# 환경 변수 (API 키)
+.env
+
+# Python 캐시
+__pycache__/
+*.pyc
+
+# 인덱싱 데이터 (실행 시 자동 생성)
+data/chroma_db/
+data/bm25_index.pkl
+data/processed_hashes.json
+data/user_keywords.json
+
+# OS 파일
+desktop.ini
+Thumbs.db
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Claude Code
+.claude/

@@ -1,0 +1,14 @@
+[server]
+headless = true
+
+[theme]
+base = "dark"
+primaryColor = "#FF4B4B"
+
+[runner]
+magicEnabled = false
+
+[client]
+# 좁은 화면에서 컬럼 세로 쌓임 방지
+showSidebarNavigation = false
+toolbarMode = "minimal"
