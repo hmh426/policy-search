@@ -530,15 +530,11 @@ def render_search_tab():
 
     for i, r in enumerate(results, 1):
         with st.container():
-            col_a, col_b = st.columns([6, 1])
             pct = r.score / max_score * 100
-            col_a.markdown(
+            st.markdown(
                 f'<span class="source-badge">📄 {r.filename}</span> '
-                f'<span style="color:#666"> {r.page}페이지</span>',
-                unsafe_allow_html=True,
-            )
-            col_b.markdown(
-                f'<div style="text-align:right"><span class="score-badge">{pct:.0f}%</span></div>',
+                f'<span style="color:#666"> {r.page}페이지</span> '
+                f'<span class="score-badge" style="float:right">{pct:.0f}%</span>',
                 unsafe_allow_html=True,
             )
             text = r.text or "(텍스트 없음)"
