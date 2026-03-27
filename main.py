@@ -33,6 +33,16 @@ st.markdown("""
     padding-left: 2rem !important;
     padding-right: 2rem !important;
 }
+/* 모바일에서 컬럼 세로 쌓임 방지 */
+@media (max-width: 768px) {
+    [data-testid="stHorizontalBlock"] {
+        flex-wrap: nowrap !important;
+    }
+    .stMainBlockContainer {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
 /* 사이드바 배경색 */
 section[data-testid="stSidebar"] {
     background-color: #2B2B2B !important;  
